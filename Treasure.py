@@ -111,6 +111,7 @@ def solve(limits, i):
 	return result
 
 def main(limits):
-	for i in range(1, max_drones()):
+	drones = min(len(DIRS), max_drones())
+	for i in range(1, drones):
 		spawn_drone(solve(limits, i))	
 	solve(limits, 0)()
