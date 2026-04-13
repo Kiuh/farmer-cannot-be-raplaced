@@ -4,19 +4,22 @@ import Carrot
 import Hay
 import Pumpkin
 import Treasure
+import WeirdSubstance
 import Wood
+import Sunflower
 
 def foobar(_):
 	pass
 
 CONFIG = {
-	Items.Hay: [400000, Hay.main],
-	Items.Wood: [400000, Wood.main],
-	Items.Carrot: [400000, Carrot.main],
-	Items.Pumpkin: [100000, Pumpkin.main],
-	# Items.Cactus: [100000, Cactus.main],
-	# Items.Weird_Substance: [100000, foobar],
-	# Items.Gold: [100000, Treasure.main],
+	Items.Gold: [600*10**3, Treasure.main],
+	Items.Hay: [5*10**6, Hay.main],
+	Items.Wood: [100*10**6, Wood.main],
+	Items.Carrot: [5*10**6, Carrot.main],
+	Items.Power: [10*10**3, Sunflower.main],
+	Items.Pumpkin: [3*10**6, Pumpkin.main],
+	Items.Cactus: [20*10**6, Cactus.main],
+	Items.Weird_Substance: [10*10**3, WeirdSubstance.main],
 }
 LIMITS = {}
 CALLABLES = {}
@@ -29,7 +32,10 @@ def action():
 	for k in CONFIG:
 		if num_items(k) < LIMITS[k]:
 			c = num_items(k)
-			CALLABLES[k]()
+			if k == Items.Gold:
+				CALLABLES[k](LIMITS)
+			else:
+				CALLABLES[k]()
 			print(num_items(k) - c)
 			return
 	

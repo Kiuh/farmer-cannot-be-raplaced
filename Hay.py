@@ -1,11 +1,11 @@
 import Utils
 
 def job():
-    for _ in range(10):
-        for _ in range(get_world_size()-1):
-            harvest()
-            move(North)
-        harvest()
+	for _ in range(10):
+		for _ in range(get_world_size()-1):
+			harvest()
+			move(North)
+		harvest()
 
 def main():
-	Utils.launch_drones_per_column(job)			
+	Utils.launch_drones_per_line(job)			

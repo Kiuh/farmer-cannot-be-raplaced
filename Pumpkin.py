@@ -21,6 +21,6 @@ def job():
 			move(North)
 
 def main():
-	Utils.launch_drones_per_column(job)
+	Utils.launch_drones_per_line(job)
 	harvest()
 

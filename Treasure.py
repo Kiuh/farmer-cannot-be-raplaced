@@ -1,31 +1,5 @@
-
+from Utils import INVERTED_DIRS
 clear()
-
-def empty_dict():
-	result = dict()
-	for i in range(0, get_world_size() ** 2):
-		result[i] = 0
-	return result
-
-def inv_dir(dir):
-	if dir == South:
-		return North
-	if dir == East:
-		return West
-	if dir == West:
-		return East
-	if dir == North:
-		return South
-
-def move_back(dir):
-	if dir == South:
-		return move(North)
-	if dir == East:
-		return move(West)
-	if dir == West:
-		return move(East)
-	if dir == North:
-		return move(South)
 
 def move_pos(pos, dir):
 	if dir == South:
@@ -68,9 +42,9 @@ def work(limits, bot_index, dirs):
 				if next_pos not in blocks and can_move(d):
 					return move(d)
 				if move(d):
-					if dfs_to_first_not_blocked(inv_dir(d)):
+					if dfs_to_first_not_blocked(INVERTED_DIRS[d]):
 						return True
-					move_back(d)
+					move(INVERTED_DIRS[d])
 		return False
 
 	while num_items(Items.Gold) < limits[Items.Gold] and num_items(Items.Weird_Substance) > limits[Items.Weird_Substance]:
@@ -130,6 +104,7 @@ DIRS = [
 	[North, East, South, West],
 ]
 
+
 def solve(limits, i):
 	def result():
 		return work(limits, i, DIRS[i])
@@ -139,7 +114,3 @@ def main(limits):
 	for i in range(1, max_drones()):
 		spawn_drone(solve(limits, i))	
 	solve(limits, 0)()
-
-
-if __name__ == "__main__":
-	main()
