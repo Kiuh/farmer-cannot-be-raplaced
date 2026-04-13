@@ -1,4 +1,4 @@
-import Utils
+import utils
 
 
 def job():
@@ -21,6 +21,6 @@ def job():
 			move(North)
 
 def main():
-	Utils.launch_drones_per_column(job)
+	utils.launch_drones_per_line(job)
 	harvest()
 

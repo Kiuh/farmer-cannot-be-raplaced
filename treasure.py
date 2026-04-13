@@ -1,31 +1,5 @@
-
+from utils import INVERTED_DIRS
 clear()
-
-def empty_dict():
-	result = dict()
-	for i in range(0, get_world_size() ** 2):
-		result[i] = 0
-	return result
-
-def inv_dir(dir):
-	if dir == South:
-		return North
-	if dir == East:
-		return West
-	if dir == West:
-		return East
-	if dir == North:
-		return South
-
-def move_back(dir):
-	if dir == South:
-		return move(North)
-	if dir == East:
-		return move(West)
-	if dir == West:
-		return move(East)
-	if dir == North:
-		return move(South)
 
 def move_pos(pos, dir):
 	if dir == South:
@@ -68,9 +42,9 @@ def work(limits, bot_index, dirs):
 				if next_pos not in blocks and can_move(d):
 					return move(d)
 				if move(d):
-					if dfs_to_first_not_blocked(inv_dir(d)):
+					if dfs_to_first_not_blocked(INVERTED_DIRS[d]):
 						return True
-					move_back(d)
+					move(INVERTED_DIRS[d])
 		return False
 
 	while num_items(Items.Gold) < limits[Items.Gold] and num_items(Items.Weird_Substance) > limits[Items.Weird_Substance]:
@@ -98,37 +72,23 @@ def work(limits, bot_index, dirs):
 		else:
 			move(dir)
 
+def permutations(lst):
+    if len(lst) <= 1:
+        return [lst]
+    
+    result = []
+    for i in range(len(lst)):
+        current = lst[i]
+        remaining = lst[:i] + lst[i+1:]
+        
+        for p in permutations(remaining):
+            result.append([current] + p)
+    
+    return result
 
 
-DIRS = [
-	[South, East, West, North],
-	[South, East, North, West],
-	[South, West, East, North],
-	[South, West, North, East],
-	[South, North, East, West],
-	[South, North, West, East],
-	
-	[West, East, South, North],
-	[West, East, North, South],
-	[West, South, East, North],
-	[West, South, North, East],
-	[West, North, East, South],
-	[West, North, South, East],
-	
-	[East, West, South, North],
-	[East, West, North, South],
-	[East, South, West, North],
-	[East, South, North, West],
-	[East, North, West, South],
-	[East, North, South, West],
-	
-	[North, West, South, East],
-	[North, West, East, South],
-	[North, South, West, East],
-	[North, South, East, West],
-	[North, East, West, South],
-	[North, East, South, West],
-]
+dirs = [South, North, East, West]
+DIRS = permutations(dirs)
 
 def solve(limits, i):
 	def result():
@@ -136,10 +96,7 @@ def solve(limits, i):
 	return result
 
 def main(limits):
-	for i in range(1, max_drones()):
+	drones = min(len(DIRS), max_drones())
+	for i in range(1, drones):
 		spawn_drone(solve(limits, i))	
 	solve(limits, 0)()
-
-
-if __name__ == "__main__":
-	main()

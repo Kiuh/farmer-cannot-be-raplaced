@@ -1,12 +1,13 @@
+INVERTED_DIRS = {North: South, South: North, East: West, West: East}
 
-def launch_drones_per_column(job):
+def launch_drones_per_line(job, spawn_dir = East):
 	amount = min(get_world_size(), max_drones())
 	set_world_size(amount)
 
 	handlers = []
 	for i in range(1, amount):
 		handlers.append(spawn_drone(job))
-		move(East)
+		move(spawn_dir)
 	job()
 
 	for h in handlers:
