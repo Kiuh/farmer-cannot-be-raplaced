@@ -1,39 +1,46 @@
 import utils
+import cactus
+import carrot
+import hay
+import pumpkin
 import treasure
-import treasure
+import weird_substance
+import wood
+import sunflower
 
-hay_limit = 5000
-wood_limit = 3000
-carrot_limit = 3000
+def foobar(_):
+	pass
+
+CONFIG = {
+	Items.Hay: [10*10**6, hay.main],
+	Items.Wood: [100*10**6, wood.main],
+	Items.Carrot: [70*10**6, carrot.main],
+	Items.Power: [10*10**3, sunflower.main],
+	Items.Pumpkin: [30*10**6, pumpkin.main],
+	Items.Cactus: [20*10**6, cactus.main],
+	Items.Weird_Substance: [10*10**3, weird_substance.main],
+	Items.Gold: [10*10**6, treasure.main],
+}
+
+LIMITS = {}
+CALLABLES = {}
+for k in CONFIG:
+	LIMITS[k] = CONFIG[k][0]
+	CALLABLES[k] = CONFIG[k][1]
 
 def action():
-	if can_harvest():
-		harvest()
+	clear()
+	for k in CONFIG:
+		if num_items(k) < LIMITS[k]:
+			c = num_items(k)
+			if k == Items.Gold:
+				CALLABLES[k](LIMITS)
+			else:
+				CALLABLES[k]()
+			print(num_items(k) - c)
+			return
 	
-	if num_items(Items.Hay) < hay_limit:
-		utils.hay()
-	elif num_items(Items.Wood) < wood_limit:
-		utils.wood()
-	elif num_items(Items.Carrot) < carrot_limit:
-		utils.carrot()
-	else:
-		utils.pumpkin()
-	
-def moveH(i):
-	if i % 2 == 0:
-		move(East)
-	else:
-		move(West)
-
-def harvestH(i):
-	for j in range(0, get_world_size() - 1):
-		action()
-		moveH(i)
-	action()
-	move(North)
 
 if __name__ == "__main__":
-	clear()
 	while True:
-		for i in range(0, get_world_size()):
-			harvestH(i)
+		action()
