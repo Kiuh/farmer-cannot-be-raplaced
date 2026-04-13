@@ -1,25 +1,25 @@
-import Utils
-import Cactus
-import Carrot
-import Hay
-import Pumpkin
-import Treasure
-import WeirdSubstance
-import Wood
-import Sunflower
+import utils
+import cactus
+import carrot
+import hay
+import pumpkin
+import treasure
+import weird_substance
+import wood
+import sunflower
 
 def foobar(_):
 	pass
 
 CONFIG = {
-	Items.Gold: [600*10**3, Treasure.main],
-	Items.Hay: [5*10**6, Hay.main],
-	Items.Wood: [100*10**6, Wood.main],
-	Items.Carrot: [5*10**6, Carrot.main],
-	Items.Power: [10*10**3, Sunflower.main],
-	Items.Pumpkin: [3*10**6, Pumpkin.main],
-	Items.Cactus: [20*10**6, Cactus.main],
-	Items.Weird_Substance: [10*10**3, WeirdSubstance.main],
+	Items.Gold: [600*10**3, treasure.main],
+	Items.Hay: [5*10**6, hay.main],
+	Items.Wood: [100*10**6, wood.main],
+	Items.Carrot: [5*10**6, carrot.main],
+	Items.Power: [10*10**3, sunflower.main],
+	Items.Pumpkin: [3*10**6, pumpkin.main],
+	Items.Cactus: [20*10**6, cactus.main],
+	Items.Weird_Substance: [10*10**3, weird_substance.main],
 }
 LIMITS = {}
 CALLABLES = {}

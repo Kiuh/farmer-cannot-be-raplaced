@@ -1,5 +1,5 @@
 
-import Utils
+import utils
 
 def job():
 	for _ in range(get_world_size()):
@@ -20,4 +20,4 @@ def job():
 			plant(Entities.Carrot)
 
 def main():
-	Utils.launch_drones_per_line(job)			
+	utils.launch_drones_per_line(job)			

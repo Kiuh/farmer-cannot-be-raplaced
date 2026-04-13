@@ -1,5 +1,5 @@
 
-import Utils
+import utils
 
 def g_dir():
 	x = get_pos_x()

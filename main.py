@@ -1,6 +1,6 @@
-import Utils
-import Treasure
-import Treasure
+import utils
+import treasure
+import treasure
 
 hay_limit = 5000
 wood_limit = 3000
@@ -11,13 +11,13 @@ def action():
 		harvest()
 	
 	if num_items(Items.Hay) < hay_limit:
-		Utils.hay()
+		utils.hay()
 	elif num_items(Items.Wood) < wood_limit:
-		Utils.wood()
+		utils.wood()
 	elif num_items(Items.Carrot) < carrot_limit:
-		Utils.carrot()
+		utils.carrot()
 	else:
-		Utils.pumpkin()
+		utils.pumpkin()
 	
 def moveH(i):
 	if i % 2 == 0:

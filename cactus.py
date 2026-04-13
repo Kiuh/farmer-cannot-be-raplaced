@@ -1,4 +1,4 @@
-import Utils
+import utils
 
 def sort_column():
 	a = 0
@@ -34,7 +34,7 @@ def sort_row():
 
 
 def main():
-	Utils.launch_drones_per_line(sort_column)
-	Utils.launch_drones_per_line(sort_row, North)
+	utils.launch_drones_per_line(sort_column)
+	utils.launch_drones_per_line(sort_row, North)
 
 	harvest()

@@ -1,4 +1,4 @@
-from Utils import INVERTED_DIRS
+from utils import INVERTED_DIRS
 clear()
 
 def move_pos(pos, dir):

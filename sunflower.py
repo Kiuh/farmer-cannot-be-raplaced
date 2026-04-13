@@ -1,4 +1,4 @@
-import Utils
+import utils
 
 def job():
 	# TODO: this is naive and not-optimized (works for now though)
@@ -18,4 +18,4 @@ def job():
 	harvest()
 
 def main():
-	Utils.launch_drones_per_line(job)		
+	utils.launch_drones_per_line(job)		
