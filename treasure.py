@@ -72,38 +72,24 @@ def work(limits, bot_index, dirs):
 		else:
 			move(dir)
 
+def permutations(lst):
+    if len(lst) <= 1:
+        return [lst]
+    
+    result = []
+    for i in range(len(lst)):
+        current = lst[i]
+        remaining = lst[:i] + lst[i+1:]
+        
+        for p in permutations(remaining):
+            result.append([current] + p)
+    
+    return result
 
 
-DIRS = [
-	[South, East, West, North],
-	[South, East, North, West],
-	[South, West, East, North],
-	[South, West, North, East],
-	[South, North, East, West],
-	[South, North, West, East],
-	
-	[West, East, South, North],
-	[West, East, North, South],
-	[West, South, East, North],
-	[West, South, North, East],
-	[West, North, East, South],
-	[West, North, South, East],
-	
-	[East, West, South, North],
-	[East, West, North, South],
-	[East, South, West, North],
-	[East, South, North, West],
-	[East, North, West, South],
-	[East, North, South, West],
-	
-	[North, West, South, East],
-	[North, West, East, South],
-	[North, South, West, East],
-	[North, South, East, West],
-	[North, East, West, South],
-	[North, East, South, West],
-]
-
+dirs = [South, North, East, West]
+DIRS = permutations(dirs)
+print(len(DIRS))
 
 def solve(limits, i):
 	def result():
