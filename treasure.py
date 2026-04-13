@@ -89,7 +89,6 @@ def permutations(lst):
 
 dirs = [South, North, East, West]
 DIRS = permutations(dirs)
-print(len(DIRS))
 
 def solve(limits, i):
 	def result():
