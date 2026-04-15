@@ -73,18 +73,18 @@ def work(limits, bot_index, dirs):
 			move(dir)
 
 def permutations(lst):
-    if len(lst) <= 1:
-        return [lst]
-    
-    result = []
-    for i in range(len(lst)):
-        current = lst[i]
-        remaining = lst[:i] + lst[i+1:]
-        
-        for p in permutations(remaining):
-            result.append([current] + p)
-    
-    return result
+	if len(lst) <= 1:
+		return [lst]
+	
+	result = []
+	for i in range(len(lst)):
+		current = lst[i]
+		remaining = lst[:i] + lst[i+1:]
+		
+		for p in permutations(remaining):
+			result.append([current] + p)
+	
+	return result
 
 
 dirs = [South, North, East, West]
